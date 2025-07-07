@@ -14,7 +14,7 @@ public class SpikeScript : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("nextLine"))
         {
-            spikeGenerator.generateSpike();
+            spikeGenerator.GenerateNextSpikeTimer();
         }
 
         if(collision.gameObject.CompareTag("Finish"))

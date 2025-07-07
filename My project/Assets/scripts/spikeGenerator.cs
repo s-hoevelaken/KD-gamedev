@@ -8,13 +8,21 @@ public class spikeGenerator : MonoBehaviour
     public float MaxSpeed;
     public float currentSpeed;
 
+    public float speedMultiplier;
+
     void Awake()
     {
         currentSpeed = MinSpeed;
         generateSpike();
     }
 
-    public void generateSpike()
+    public void GenerateNextSpikeTimer()
+    {
+        float waitTime = Random.Range(0.1f, 1.3f);
+        Invoke("generateSpike", waitTime);
+    }
+
+    void generateSpike()
     {
         GameObject SpikeIns = Instantiate(spike, transform.position, transform.rotation);
 
@@ -24,6 +32,9 @@ public class spikeGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(currentSpeed < MaxSpeed)
+        {
+            currentSpeed += speedMultiplier;
+        }
     }
 }
