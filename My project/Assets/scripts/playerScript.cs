@@ -2,43 +2,63 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class playerScript : MonoBehaviour
 {
     public float jumpForce = 10f;
     [SerializeField] private bool isGrounded = false;
     [SerializeField] private bool isAlive = false;
-    float score;
+
+    private float score;
     public TMP_Text Scoretext;
+    public GameObject winScreen;
+    public GameObject startScreen;
+    public TMP_Text startScreenText;
+    private bool isGameOver = false;
+
+    public float minWinScore = 40f;
+    public float maxWinScore = 80f;
+    private float winScore;
+
     private Rigidbody2D rb;
+    private bool gameStarted = false;
 
-
-void Start()
-{
-    isAlive = true;
-
-    if (Scoretext == null)
+    void Awake()
     {
-        Debug.LogError("Scoretext is NOT assigned!");
-    }
-    else
-    {
-        Debug.Log("Scoretext is: " + Scoretext.name);
-    }
-}
-
-    private void Awake()
-    {
-        // Get the Rigidbody2D component
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    void Start()
+    {
+        isAlive = false;
+        gameStarted = false;
+        winScore = Random.Range(minWinScore, maxWinScore);
+
+        startScreenText.text = "Press SPACE to start!";
+        startScreen.SetActive(true);
+        winScreen.SetActive(false);
+        Time.timeScale = 0f;
     }
 
     void Update()
     {
+        if (!gameStarted && !isGameOver && Input.GetKeyDown(KeyCode.Space))
+        {
+            gameStarted = true;
+            isAlive = true;
+            Time.timeScale = 1f;
+            startScreen.SetActive(false);
+        }
 
-    
-        // Jump when Space is pressed and the player is on the ground
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (isGameOver && Input.GetKeyDown(KeyCode.Space))
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        // Handle jumping
+        if (Input.GetKeyDown(KeyCode.Space) && isAlive)
         {
             if (isGrounded)
             {
@@ -46,16 +66,23 @@ void Start()
                 isGrounded = false;
             }
         }
-        if(isAlive)
+
+        // Scoring + win condition
+        if (isAlive)
         {
             score += Time.deltaTime * 4;
-            Scoretext.text = "SCORE : " + ((int)score).ToString();
+            Scoretext.text = "SCORE : " + ((int)score) + "\n TARGET : " + ((int)winScore);
+
+            if (score >= winScore)
+            {
+                startScreenText.text = "You Won!";
+                startScreen.SetActive(true);
+            }
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        // Set grounded when touching an object tagged "Ground"
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
@@ -63,8 +90,20 @@ void Start()
 
         if (collision.gameObject.CompareTag("Spike"))
         {
+            isGameOver = true;
+            if (score >= winScore)
+            {
+                startScreenText.text = "You Won Play Again!\nPress SPACE to restart!";
+            }
+            else
+            {
+                startScreenText.text = "You Lost! Try Again\nPress SPACE to restart!";
+            }
             isAlive = false;
             Time.timeScale = 0;
+
+            startScreen.SetActive(true);
+            gameStarted = false;
         }
     }
 }
