@@ -4,20 +4,22 @@ public class SpikeScript : MonoBehaviour
 {
     public spikeGenerator spikeGenerator;
 
-    // Update is called once per frame
     void Update()
     {
+        // move the spike to the left using the current speed from spike generator
         transform.Translate(Vector2.left * spikeGenerator.currentSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("nextLine"))
+        // when spike hits nextLine, spawn next 
+        if (collision.gameObject.CompareTag("nextLine"))
         {
             spikeGenerator.GenerateNextSpikeTimer();
         }
 
-        if(collision.gameObject.CompareTag("Finish"))
+        // when spike hits Finish line on left delete it
+        if (collision.gameObject.CompareTag("Finish"))
         {
             Destroy(this.gameObject);
         }
