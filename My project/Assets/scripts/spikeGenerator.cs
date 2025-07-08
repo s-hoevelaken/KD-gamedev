@@ -18,7 +18,7 @@ public class spikeGenerator : MonoBehaviour
 
     public void GenerateNextSpikeTimer()
     {
-        float waitTime = Random.Range(0.721f, 1.2f);
+        float waitTime = Random.Range(0.32f, 0.6f);
         Invoke("generateSpike", waitTime);
     }
 

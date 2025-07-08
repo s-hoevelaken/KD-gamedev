@@ -14,7 +14,9 @@ public class playerScript : MonoBehaviour
     public TMP_Text Scoretext;
     public GameObject winScreen;
     public GameObject startScreen;
+    public GameObject poweredBy;
     public TMP_Text startScreenText;
+    public TMP_Text poweredByText;
     private bool isGameOver = false;
 
     public float minWinScore = 40f;
@@ -36,7 +38,9 @@ public class playerScript : MonoBehaviour
         winScore = Random.Range(minWinScore, maxWinScore);
 
         startScreenText.text = "Press SPACE to start!";
+        poweredByText.text = "Powered by Best Education";
         startScreen.SetActive(true);
+        poweredBy.SetActive(true);
         winScreen.SetActive(false);
         Time.timeScale = 0f;
     }
@@ -49,6 +53,7 @@ public class playerScript : MonoBehaviour
             isAlive = true;
             Time.timeScale = 1f;
             startScreen.SetActive(false);
+            poweredBy.SetActive(false); 
         }
 
         if (isGameOver && Input.GetKeyDown(KeyCode.Space))
