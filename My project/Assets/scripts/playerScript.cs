@@ -15,7 +15,9 @@ public class playerScript : MonoBehaviour
     public GameObject winScreen;
     public GameObject startScreen;
     public GameObject poweredBy;
+    public GameObject slogan;
     public TMP_Text startScreenText;
+    public TMP_Text sloganText;
     public TMP_Text poweredByText;
     private bool isGameOver = false;
 
@@ -39,9 +41,11 @@ public class playerScript : MonoBehaviour
 
         startScreenText.text = "Press SPACE to start!";
         poweredByText.text = "Powered by Best Education";
+        sloganText.text = "Wij lanceren je de toekomst in!";
         startScreen.SetActive(true);
         poweredBy.SetActive(true);
         winScreen.SetActive(false);
+        slogan.SetActive(true);
         Time.timeScale = 0f;
     }
 
@@ -54,6 +58,7 @@ public class playerScript : MonoBehaviour
             Time.timeScale = 1f;
             startScreen.SetActive(false);
             poweredBy.SetActive(false); 
+            slogan.SetActive(false);
         }
 
         if (isGameOver && Input.GetKeyDown(KeyCode.Space))
