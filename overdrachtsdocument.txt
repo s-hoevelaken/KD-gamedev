@@ -1,0 +1,32 @@
+Overdrachtsdocument
+
+De game is gebouwd in Unity 6 (6000.0.32f1) in C#. Alle scripts staan in de map Assets/scripts.
+Belangrijkste onderdelen
+
+    playerScript.cs: regelt de input (springen), score, start-/restart-logica en UI-updates.
+
+    spikeGenerator.cs: genereert spikes op willekeurige intervallen met variabele hoogte.
+
+    SpikeScript.cs: verplaatst spikes naar links en verwijdert ze zodra ze het scherm verlaten.
+
+    De start-UI toont branding van Best Education (logo, slogan, powered by-tekst).
+    
+    Alle UI-elementen staan onder het Canvas object.
+
+Belangrijke keuzes
+
+    De speler kan doorspelen na het behalen van de doelscore, om een competitief gevoel te behouden.
+
+    Spel wordt sneller hoe langer speler leeft om het moeilijker te maken met tijd (tot limiet berijkt word)
+
+    Spikes variëren in hoogte en verschijnen met een random tijd, voor afwisseling.
+
+    Alle branding is zichtbaar vóór en tijdens het spel (logo blijft, slogan verdwijnt na start).
+
+Hoe verder?
+
+    munten of iets vergelijkbaars om toe te voegen
+
+    GameObjects kunnen vervangen worden voor mooiere visuals.
+
+    Extra obstakels, eventueel lucht-obstakels.

@@ -1,0 +1,34 @@
+Omschrijving Ontwikkelomgeving
+
+Naam kandidaat: Stephan Hoevelaken
+Datum: 30-06-2025
+Onderdeel: Omschrijving van de ontwikkelomgeving
+Computerconfiguratie
+
+    Type systeem: Custom-built desktop PC
+
+    Processor: AMD Ryzen 5 3600X (6-core)
+
+    Werkgeheugen: 32 GB RAM
+
+    Grafische kaart: AMD Radeon RX 5600 XT
+
+    Besturingssysteem: Windows 10 (64-bit)
+
+Gebruikte Software
+
+    Game engine: Unity 6 (versie 6000.0.32f1)
+
+    Programmeertaal: C#
+
+    Editor: Visual Studio Code (versie 1.101.2, user setup)
+
+    Versiebeheer: Git (via GitHub, repository publiek toegankelijk)
+
+Testomgeving
+
+    De game is tijdens de ontwikkeling getest op dezelfde ontwikkelmachine.
+
+    Alle builds en testmomenten zijn lokaal uitgevoerd met Unity’s ingebouwde play mode.
+
+    Bij herstarten of verliezen wordt de game direct binnen Unity getest op consistent gedrag.
